@@ -1,0 +1,100 @@
+package com.mycompany.ecommerce.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+/**
+ *
+ * @author rishan
+ */
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
+    private String userName;
+    private String userPassword;
+    private String userPhone;
+    @Column(length = 1500)
+    private String userPic;
+    @Column(length = 1500)
+    private String userAddress;
+
+    public User() {
+    }
+
+    public User(String userName, String userPassword, String userPhone, String userPic, String userAddress) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userPhone = userPhone;
+        this.userPic = userPic;
+        this.userAddress = userAddress;
+    }
+
+    public User(int userId, String userName, String userPassword, String userPhone, String userPic, String userAddress) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userPhone = userPhone;
+        this.userPic = userPic;
+        this.userAddress = userAddress;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + '}';
+    }
+
+}
