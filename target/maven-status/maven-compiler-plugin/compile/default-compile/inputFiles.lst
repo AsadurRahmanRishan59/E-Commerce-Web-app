@@ -4,3 +4,4 @@
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/entities/User.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/helper/FactoryProvider.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/resources/JakartaEE11Resource.java
+/home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/servlets/RegisterServlet.java

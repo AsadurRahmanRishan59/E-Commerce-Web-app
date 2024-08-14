@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
  * @author rishan
  */
 public class FactoryProvider {
-    private static SessionFactory factory;
+    public static SessionFactory factory;
     
     public static SessionFactory getFactory(){
         
