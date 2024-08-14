@@ -4,15 +4,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Home Page</title>
+
+        <%@include file="components/common_css_js.jsp" %>
+        
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h1>
-            <%
-                out.println(FactoryProvider.getFactory());
-            %>
+         <%@include file="components/navbar.jsp" %>
+         
+            <h1>Hello World!</h1>
+            <h1>
+                <%
+                    out.println(FactoryProvider.getFactory());
+                %>
 
-        </h1>
+            </h1>
+       
+
     </body>
 </html>
