@@ -2,6 +2,7 @@ package com.mycompany.ecommerce.servlets;
 
 import com.mycompany.ecommerce.entities.User;
 import com.mycompany.ecommerce.helper.FactoryProvider;
+import com.mycompany.ecommerce.helper.PasswordUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -38,8 +39,12 @@ public class RegisterServlet extends HttpServlet {
                 String phone = request.getParameter("phone");
                 String address = request.getParameter("address");
 
+                // hashing the password before saving
+                String hashPassword = PasswordUtil.hashPassword(password);
+
+
                 // Creating user
-                User user = new User(username, email, password, phone, "default.jpg", address, "normal");
+                User user = new User(username, email, hashPassword, phone, "default.jpg", address, "normal");
 
                 hibernateSession.persist(user);
 
