@@ -1,9 +1,6 @@
 .nav-color{
     background-color: #e65100!important;
 }
-
-
-
 .reg-color{
     background-color: #f7e4e1;
 }
@@ -12,4 +9,13 @@
 }
 .login-background{
     background-color: #EBE0DC;
+}
+
+.admin .card{
+    border: 1px solid #e65100;
+}
+
+.admin .card:hover{
+    background: #ff8f00;
+    cursor:pointer;
 }

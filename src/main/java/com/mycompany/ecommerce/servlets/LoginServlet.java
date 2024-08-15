@@ -31,18 +31,22 @@ public class LoginServlet extends HttpServlet {
             //authenticating user
             UserDao userDao = new UserDao(FactoryProvider.getFactory());
             User user = userDao.getUserByEmailAndPassword(email, hashPassword);
-            
+
             HttpSession httpSession = request.getSession();
-            
-            if(user==null){
-                
+
+            if (user == null) {
+
                 httpSession.setAttribute("message", "Invalid email address or password!!");
                 response.sendRedirect("login.jsp");
-                
-            }else{
-                
-                response.sendRedirect("index.jsp");
-                
+
+            } else {
+                httpSession.setAttribute("currentUser", user);
+                switch (user.getUserType()) {
+                    case "admin" -> response.sendRedirect("admin.jsp");
+                    case "normal" -> response.sendRedirect("normal.jsp");
+                    default -> out.println("We have not identified user type");
+                }
+
             }
         }
     }

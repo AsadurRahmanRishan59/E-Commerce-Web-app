@@ -1,4 +1,5 @@
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/JakartaRestConfiguration.java
+/home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/dao/CategoryDao.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/dao/UserDao.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/entities/Category.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/entities/Product.java
@@ -7,4 +8,6 @@
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/helper/PasswordUtil.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/resources/JakartaEE11Resource.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/servlets/LoginServlet.java
+/home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/servlets/LogoutServlet.java
+/home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/servlets/ProductOperationServlet.java
 /home/rishan/NetBeansProjects/Ecommerce/src/main/java/com/mycompany/ecommerce/servlets/RegisterServlet.java

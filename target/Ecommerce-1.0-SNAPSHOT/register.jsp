@@ -75,7 +75,7 @@
 
                                 <div class="container text-center">
                                     <button type="submit" class="btn btn-success">Register</button>
-                                    <button type="reset" class="btn btn-primary" href="#">Reset</button>
+                                    <button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
 
                             </form>

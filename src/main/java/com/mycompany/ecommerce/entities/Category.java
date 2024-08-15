@@ -1,5 +1,6 @@
 package com.mycompany.ecommerce.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
+    @Column(unique = true)
     private String categoryTitle;
     private String categoryDecription;
 
