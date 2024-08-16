@@ -1,3 +1,7 @@
+<%@page import="com.mycompany.ecommerce.entities.Category"%>
+<%@page import="java.util.List"%>
+<%@page import="com.mycompany.ecommerce.helper.FactoryProvider"%>
+<%@page import="com.mycompany.ecommerce.dao.CategoryDao"%>
 <%@page import="com.mycompany.ecommerce.entities.User"%>
 <%
     User user = (User) session.getAttribute("currentUser");
@@ -27,9 +31,9 @@
         <%@include file="components/navbar.jsp" %>
 
         <div class="container admin">
-            
+
             <%@include file="components/message.jsp" %>
-            
+
             <!--first row-->
             <div class="row mt-3">
 
@@ -78,7 +82,7 @@
                 <div class="col-md-6">
                     <div class="card" data-toggle="modal" data-target="#add-category-modal">
 
-                        
+
 
                         <div class="card-body text-center">
                             <div class="container">
@@ -145,7 +149,7 @@
         </div>
         <!--end of add category modal-->
 
-
+        <!----------------------------------------------------------------------------------------------------------------------------------->
         <!--modal add product-->
 
         <!-- Modal -->
@@ -161,24 +165,46 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="ProductOperationServlet" method="post">
+                        <form action="ProductOperationServlet" method="post"enctype="multipart/form-data">
 
                             <input type="hidden" name="operation" value="addProduct">
 
                             <div class="form-group">
-                                <input type="text" name="productTitle" class="form-control" placeholder="Enter product name"required>
+                                <input type="text" name="productName" class="form-control" placeholder="Enter product name"required>
+                            </div>
+
+                            <!--product-category-drop-down-->
+
+                            <div class="form-group">
+
+                                <select name="catId" class="form-control form-control-sm">
+
+                                    <option value="first" disabled selected>select a category</option>
+
+                                    <%                                        CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());
+                                        List<Category> categories = categoryDao.getCategories();
+
+                                        for (Category category : categories) {
+                                    %>
+
+                                    <option value="<%= category.getCategoryId()%>"><%=category.getCategoryTitle()%></option>
+
+                                    <%
+                                        }
+                                    %>
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <textarea style="height: 150px" class="form-control" name="ProductDescription" placeholder="Enter product description" required></textarea>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="productCategory" class="form-control" placeholder="Enter product category"required>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea style="height: 200px" class="form-control" name="catDescription" placeholder="Enter product description" required></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="productTitle" class="form-control" placeholder="Enter product title"required>
+                                <label for="productPic">Select Picture of  the Product</label>
+                                <br>
+                                <input type="file" name="productPic" id="productPic" required>
                             </div>
 
                             <div class="form-group">
@@ -186,7 +212,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="number" name="productDiscount" class="form-control" placeholder="Enter product discount">
+                                <input type="number" name="productDiscount" class="form-control" placeholder="Enter product discount"required>
                             </div>
 
                             <div class="form-group">
@@ -194,7 +220,7 @@
                             </div>
 
                             <div class="container text-center">
-                                <button type="submit" class="btn btn-outline-success">Add Category</button>
+                                <button type="submit" class="btn btn-outline-success">Add Product</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
 

@@ -1,15 +1,19 @@
 package com.mycompany.ecommerce.servlets;
 
 import com.mycompany.ecommerce.dao.CategoryDao;
+import com.mycompany.ecommerce.dao.ProductDao;
 import com.mycompany.ecommerce.entities.Category;
+import com.mycompany.ecommerce.entities.Product;
 import com.mycompany.ecommerce.helper.FactoryProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import org.hibernate.HibernateException;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -17,6 +21,7 @@ import org.hibernate.exception.ConstraintViolationException;
  *
  * @author rishan
  */
+@MultipartConfig
 public class ProductOperationServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +45,7 @@ public class ProductOperationServlet extends HttpServlet {
                 CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());
 
                 HttpSession httpSession = request.getSession();
-                String saveCategory = "";
+
                 try {
 
                     categoryDao.saveCategory(category);
@@ -48,39 +53,74 @@ public class ProductOperationServlet extends HttpServlet {
                     httpSession.setAttribute("catTitle", catTitle);
                     response.sendRedirect("admin.jsp");
 
+                } catch (ConstraintViolationException e) {
+
+                    httpSession.setAttribute("message", "Category Title Must be Unique");
+                    httpSession.setAttribute("catTitle", catTitle);
+                    response.sendRedirect("admin.jsp");
+
+                    e.printStackTrace();
+                } catch (HibernateException e) {
+
+                    httpSession.setAttribute("message", catTitle + " Could not be added-category");
+                    httpSession.setAttribute("catTitle", catTitle);
+                    response.sendRedirect("admin.jsp");
+
+                    e.printStackTrace();
                 } catch (Exception e) {
 
-                    httpSession.setAttribute("message", "Category Title Must be Unique");
+                    httpSession.setAttribute("message", "Could not be added-category");
                     httpSession.setAttribute("catTitle", catTitle);
                     response.sendRedirect("admin.jsp");
-                    System.out.println("from exception " + saveCategory + " hi");
 
-//                    e.printStackTrace();
+                    e.printStackTrace();
+                    System.out.println("from exception-------------------------------------------------===============");
                 }
-                /*
-                if (saveCategory == "success") {
-
-                    httpSession.setAttribute("message", "New Category Added");
-                    httpSession.setAttribute("catTitle", catTitle);
-                    response.sendRedirect("admin.jsp");
-
-                } else if (saveCategory == "not unique") {
-
-                    httpSession.setAttribute("message", "Category Title Must be Unique");
-                    httpSession.setAttribute("catTitle", catTitle);
-                    response.sendRedirect("admin.jsp");
-
-                } else {
-
-                    httpSession.setAttribute("message", "Could not be added");
-                    httpSession.setAttribute("catTitle", catTitle);
-                    response.sendRedirect("admin.jsp");
-
-                }*/
 
             } else if (operation.trim().equals("addProduct")) {
 
+
                 //fetching product data
+                String productName = request.getParameter("productName");
+                String productDescription = request.getParameter("ProductDescription");
+
+                Part part = request.getPart("productPic");
+                String productPic = part.getSubmittedFileName();
+
+                int productPrice = Integer.parseInt(request.getParameter("productPrice"));
+                int productDiscount = Integer.parseInt(request.getParameter("productDiscount"));
+                int productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
+                int catId = Integer.parseInt(request.getParameter("catId"));
+
+                Category category = new CategoryDao(FactoryProvider.getFactory()).getCategoryByCatId(catId);
+                Product product = new Product(productName, productDescription, productPic, productPrice, productDiscount, productQuantity, category);
+
+                ProductDao productDao = new ProductDao(FactoryProvider.getFactory());
+                HttpSession httpSession = request.getSession();
+
+                try {
+
+                    productDao.saveProduct(product);
+                    httpSession.setAttribute("message", "New Product Added");
+                    httpSession.setAttribute("productName", productName);
+                    response.sendRedirect("admin.jsp");
+
+                } catch (HibernateException e) {
+
+                    httpSession.setAttribute("message", productName + " Could not be added");
+                    httpSession.setAttribute("productName", productName);
+                    response.sendRedirect("admin.jsp");
+
+                    e.printStackTrace();
+                } catch (Exception e) {
+
+                    httpSession.setAttribute("message", "Could not be added");
+                    httpSession.setAttribute("productName", productName);
+                    response.sendRedirect("admin.jsp");
+
+                    e.printStackTrace();
+                }
+                
             }
 
         }

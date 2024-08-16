@@ -6,6 +6,7 @@ com/mycompany/ecommerce/dao/UserDao.class
 com/mycompany/ecommerce/entities/Category.class
 com/mycompany/ecommerce/servlets/RegisterServlet.class
 com/mycompany/ecommerce/servlets/ProductOperationServlet.class
+com/mycompany/ecommerce/dao/ProductDao.class
 com/mycompany/ecommerce/resources/JakartaEE11Resource.class
 com/mycompany/ecommerce/entities/User.class
 com/mycompany/ecommerce/entities/Product.class

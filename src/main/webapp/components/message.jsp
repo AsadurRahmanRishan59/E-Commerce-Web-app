@@ -73,6 +73,10 @@
         session.removeAttribute("message");
     }
 
+
+
+
+
     String catTitle = (String) session.getAttribute("catTitle");
     if (message == "New Category Added") {
 %>
@@ -86,7 +90,11 @@
         session.removeAttribute("message");
         session.removeAttribute("catTitle");
     }
-    if (message == "Could not be added") {
+
+
+
+
+    if (message == "Could not be added-category") {
 %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong><%= catTitle + " Could not be added"%></strong> 
@@ -99,10 +107,12 @@
         session.removeAttribute("catTitle");
     }
 
+
+
     if (message == "Category Title Must be Unique") {
 %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong><%= catTitle+" already exists !! " + "\nCategory Title Must be Unique"%></strong> 
+    <strong><%= catTitle + " already exists !! " + "\nCategory Title Must be Unique"%></strong> 
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -110,6 +120,47 @@
 <%
         session.removeAttribute("message");
         session.removeAttribute("catTitle");
+    }
+
+
+
+
+
+
+
+
+
+    String productName = (String) session.getAttribute("productName");
+    if (message == "New Product Added") {
+%>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong><%= "New Product " + productName + " Added"%></strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<%
+        session.removeAttribute("message");
+        session.removeAttribute("productName");
+    }
+
+
+
+
+
+
+
+    if (message == "Could not be added") {
+%>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong><%= productName + " Could not be added"%></strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<%
+        session.removeAttribute("message");
+        session.removeAttribute("productName");
     }
 
 %>
