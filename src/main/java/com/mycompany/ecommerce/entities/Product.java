@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 /**
@@ -20,7 +21,9 @@ public class Product {
     private String pName;
     @Column(length = 3000)
     private String pDescription;
-    private String pPhoto;
+    @Lob
+    @Column(name = "productPic", columnDefinition = "BLOB")
+    private byte[] productPic;
     private int pPrice;
     private int pDiscount;
     private int pQuantity;
@@ -31,21 +34,21 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDescription, String pPhoto, int pPrice, int pDiscount, int pQuantity, Category category) {
+    public Product(String pName, String pDescription, byte[] productPic, int pPrice, int pDiscount, int pQuantity, Category category) {
         this.pName = pName;
         this.pDescription = pDescription;
-        this.pPhoto = pPhoto;
+        this.productPic = productPic;
         this.pPrice = pPrice;
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
         this.category = category;
     }
 
-    public Product(int pId, String pName, String pDescription, String pPhoto, int pPrice, int pDiscount, int pQuantity, Category category) {
+    public Product(int pId, String pName, String pDescription, byte[] productPic, int pPrice, int pDiscount, int pQuantity, Category category) {
         this.pId = pId;
         this.pName = pName;
         this.pDescription = pDescription;
-        this.pPhoto = pPhoto;
+        this.productPic = productPic;
         this.pPrice = pPrice;
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
@@ -76,12 +79,12 @@ public class Product {
         this.pDescription = pDescription;
     }
 
-    public String getpPhoto() {
-        return pPhoto;
+    public byte[] getProductPic() {
+        return productPic;
     }
 
-    public void setpPhoto(String pPhoto) {
-        this.pPhoto = pPhoto;
+    public void setProductPic(byte[] productPic) {
+        this.productPic = productPic;
     }
 
     public int getpPrice() {
@@ -118,7 +121,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", pPhoto=" + pPhoto + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", category=" + category + '}';
+        return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", category=" + category + '}';
     }
 
 }
