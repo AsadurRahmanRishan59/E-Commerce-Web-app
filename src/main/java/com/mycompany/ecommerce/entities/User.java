@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.Date;
 
 /**
  *
@@ -21,27 +22,27 @@ public class User {
     private String userEmail;
     private String userPassword;
     private String userPhone;
-    @Column(length = 1500)
     private String userPic;
     @Column(length = 1500)
     private String userAddress;
-
+    private Date date;
     private String userType;
 
     public User() {
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, Date date, String userType) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
         this.userPic = userPic;
         this.userAddress = userAddress;
+        this.date = date;
         this.userType = userType;
     }
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, Date date, String userType) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -49,15 +50,8 @@ public class User {
         this.userPhone = userPhone;
         this.userPic = userPic;
         this.userAddress = userAddress;
+        this.date = date;
         this.userType = userType;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 
     public int getUserId() {
@@ -74,6 +68,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserPassword() {
@@ -108,6 +110,14 @@ public class User {
         this.userAddress = userAddress;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public String getUserType() {
         return userType;
     }
@@ -118,7 +128,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + '}';
+        return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + ", date=" + date + ", userType=" + userType + '}';
     }
+    
+    
 
+    
+    
 }

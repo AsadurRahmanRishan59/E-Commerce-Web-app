@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Date;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -43,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
 
 
                 // Creating user
-                User user = new User(username, email, hashPassword, phone, "default.jpg", address, "normal");
+                User user = new User(username, email, hashPassword, phone, null, address, new Date(), "normal");
 
                 hibernateSession.persist(user);
 

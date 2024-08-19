@@ -19,3 +19,9 @@
     background: #ff8f00;
     cursor:pointer;
 }
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #e65100;
+  border-color: #e65100;
+}

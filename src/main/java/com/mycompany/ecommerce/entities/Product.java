@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import java.util.Date;
 
 /**
  *
@@ -21,12 +21,11 @@ public class Product {
     private String pName;
     @Column(length = 3000)
     private String pDescription;
-    @Lob
-    @Column(name = "productPic", columnDefinition = "BLOB")
-    private byte[] productPic;
+    private String productPic;
     private int pPrice;
     private int pDiscount;
     private int pQuantity;
+    private Date date;
 
     @ManyToOne
     private Category category;
@@ -34,17 +33,18 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDescription, byte[] productPic, int pPrice, int pDiscount, int pQuantity, Category category) {
+    public Product(String pName, String pDescription, String productPic, int pPrice, int pDiscount, int pQuantity, Date date, Category category) {
         this.pName = pName;
         this.pDescription = pDescription;
         this.productPic = productPic;
         this.pPrice = pPrice;
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
+        this.date = date;
         this.category = category;
     }
 
-    public Product(int pId, String pName, String pDescription, byte[] productPic, int pPrice, int pDiscount, int pQuantity, Category category) {
+    public Product(int pId, String pName, String pDescription, String productPic, int pPrice, int pDiscount, int pQuantity, Date date, Category category) {
         this.pId = pId;
         this.pName = pName;
         this.pDescription = pDescription;
@@ -52,6 +52,7 @@ public class Product {
         this.pPrice = pPrice;
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
+        this.date = date;
         this.category = category;
     }
 
@@ -79,11 +80,11 @@ public class Product {
         this.pDescription = pDescription;
     }
 
-    public byte[] getProductPic() {
+    public String getProductPic() {
         return productPic;
     }
 
-    public void setProductPic(byte[] productPic) {
+    public void setProductPic(String productPic) {
         this.productPic = productPic;
     }
 
@@ -111,6 +112,14 @@ public class Product {
         this.pQuantity = pQuantity;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -121,7 +130,10 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", category=" + category + '}';
+        return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", productPic=" + productPic + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", date=" + date + ", category=" + category + '}';
     }
 
+    
+
+    
 }

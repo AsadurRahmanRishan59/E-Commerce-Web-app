@@ -16,7 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Date;
 import org.hibernate.HibernateException;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -75,9 +77,15 @@ public class ProductOperationServlet extends HttpServlet {
             System.out.println(filePath);
 
             //save to database
+//            InputStream inputStream = part.getInputStream();
+//            byte[] productPic = inputStream.readAllBytes();
+//            FileHandler.saveFile(inputStream, filePath);
+            FileOutputStream fos = new FileOutputStream(filePath);
             InputStream inputStream = part.getInputStream();
-            byte[] productPic = inputStream.readAllBytes();
-            FileHandler.saveFile(inputStream, filePath);
+            byte[] data = new byte[inputStream.available()];
+            inputStream.read(data);
+            fos.write(data);
+            inputStream.close();
 
             int productPrice = Integer.parseInt(request.getParameter("productPrice"));
             int productDiscount = Integer.parseInt(request.getParameter("productDiscount"));
@@ -85,7 +93,7 @@ public class ProductOperationServlet extends HttpServlet {
             int catId = Integer.parseInt(request.getParameter("catId"));
 
             Category category = new CategoryDao(FactoryProvider.getFactory()).getCategoryByCatId(catId);
-            Product product = new Product(productName, productDescription, productPic, productPrice, productDiscount, productQuantity, category);
+            Product product = new Product(productName, productDescription, productPicName, productPrice, productDiscount, productQuantity, new Date(), category);
 
             ProductDao productDao = new ProductDao(FactoryProvider.getFactory());
 

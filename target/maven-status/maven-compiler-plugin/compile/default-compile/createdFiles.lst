@@ -12,4 +12,5 @@ com/mycompany/ecommerce/resources/JakartaEE11Resource.class
 com/mycompany/ecommerce/entities/User.class
 com/mycompany/ecommerce/entities/Product.class
 com/mycompany/ecommerce/servlets/LogoutServlet.class
+com/mycompany/ecommerce/helper/Helper.class
 com/mycompany/ecommerce/helper/PasswordUtil.class
