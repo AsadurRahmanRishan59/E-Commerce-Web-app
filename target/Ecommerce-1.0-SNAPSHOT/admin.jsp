@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.mycompany.ecommerce.helper.Helper"%>
 <%@page import="com.mycompany.ecommerce.entities.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mycompany.ecommerce.helper.FactoryProvider"%>
@@ -16,8 +18,11 @@
             return;
         }
     }
+    CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());
+    List<Category> categories = categoryDao.getCategories();
 
-
+    //getting count
+    Map<String,Integer> map = Helper.getCounts( FactoryProvider.getFactory());
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,6 +49,7 @@
                             <div class="container">
                                 <img class="fluid" style="max-width: 100px;" src="img/team.png" alt="user_icon"/>
                             </div>
+                            <h1><%= map.get("userCount") %></h1>
                             <h1 class="text-uppercase text-muted">Users</h1>
                         </div>
                     </div>
@@ -56,6 +62,7 @@
                             <div class="container">
                                 <img class="fluid" style="max-width: 100px;" src="img/window.png" alt="user_icon"/>
                             </div>
+                            <h1><%= categories.size() %></h1>
                             <h1 class="text-uppercase text-muted">Categories</h1>
                         </div>
                     </div>
@@ -68,6 +75,7 @@
                             <div class="container">
                                 <img class="fluid" style="max-width: 100px;" src="img/delivery.png" alt="user_icon"/>
                             </div>
+                            <h1><%= map.get("productCount") %></h1>
                             <h1 class="text-uppercase text-muted">Products</h1>
                         </div>
                     </div>
@@ -181,9 +189,7 @@
 
                                     <option value="first" disabled selected>select a category</option>
 
-                                    <%                                        CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());
-                                        List<Category> categories = categoryDao.getCategories();
-
+                                    <%                                        
                                         for (Category category : categories) {
                                     %>
 

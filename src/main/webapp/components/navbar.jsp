@@ -35,6 +35,10 @@
 
             <ul class="navbar-nav ml-auto">
 
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-plus"style="font-size: 20px;"> (<span class="cart-items">  </span>) </i></a>
+                </li>
+
                 <%          if (userN == null) {
 
                 %>
@@ -46,19 +50,30 @@
                     <a class="nav-link" href="register.jsp">Register</a>
                 </li>
 
-                <%                } else {
+                <%                } else if (userN.getUserType().equals("admin")) {
                 %>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"><%= userN.getUserName()%></a>
+                    <a class="nav-link" href="admin.jsp"><%= userN.getUserName()%></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="LogoutServlet">Logout</a>
                 </li>
+                <%                 } else {
 
-                <%
-                        }
                 %>
+                <li class="nav-item active">
+                    <a class="nav-link" href="normal.jsp"><%= userN.getUserName()%></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="LogoutServlet">Logout</a>
+                </li>
+                <%
+                    }
+                %>
+
+
+
 
 
             </ul>

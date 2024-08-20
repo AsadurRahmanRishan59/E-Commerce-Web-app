@@ -51,7 +51,7 @@
                                 
                                 <a href="register.jsp"><small>If not registered click here</small></a>
                                 <div class="container text-center mt-2">
-                                    <button type="submit" class="btn btn-primary nav-color">Login</button>
+                                    <button type="submit" class="btn btn-outline-nav">Login</button>
                                     <button type="reset" class="btn btn-primary" href="#">Reset</button>
                                 </div>
 

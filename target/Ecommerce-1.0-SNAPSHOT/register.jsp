@@ -69,12 +69,12 @@
 
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <textarea name="address"required style="height: 120px;" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Enter your here">
+                                    <textarea name="address"required style="height: 120px;" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Enter your address here">
                                     </textarea>
                                 </div>
 
                                 <div class="container text-center">
-                                    <button type="submit" class="btn btn-success">Register</button>
+                                    <button type="submit" class="btn btn-outline-success">Register</button>
                                     <button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
 

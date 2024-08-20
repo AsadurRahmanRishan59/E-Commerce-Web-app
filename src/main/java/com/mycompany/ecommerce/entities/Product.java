@@ -133,7 +133,10 @@ public class Product {
         return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", productPic=" + productPic + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", date=" + date + ", category=" + category + '}';
     }
 
-    
+    public int getPriceAfterDiscount(){
+        int d = (int)((this.getpDiscount()/100.0)*this.getpPrice());
+        return this.getpPrice()-d;
+    }
 
     
 }

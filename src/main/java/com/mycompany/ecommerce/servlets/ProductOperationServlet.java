@@ -77,15 +77,15 @@ public class ProductOperationServlet extends HttpServlet {
             System.out.println(filePath);
 
             //save to database
-//            InputStream inputStream = part.getInputStream();
-//            byte[] productPic = inputStream.readAllBytes();
-//            FileHandler.saveFile(inputStream, filePath);
-            FileOutputStream fos = new FileOutputStream(filePath);
             InputStream inputStream = part.getInputStream();
-            byte[] data = new byte[inputStream.available()];
-            inputStream.read(data);
-            fos.write(data);
-            inputStream.close();
+            FileHandler.saveFile(inputStream, filePath);
+            
+//            FileOutputStream fos = new FileOutputStream(filePath);
+//            InputStream inputStream = part.getInputStream();
+//            byte[] data = new byte[inputStream.available()];
+//            inputStream.read(data);
+//            fos.write(data);
+//            inputStream.close();
 
             int productPrice = Integer.parseInt(request.getParameter("productPrice"));
             int productDiscount = Integer.parseInt(request.getParameter("productDiscount"));

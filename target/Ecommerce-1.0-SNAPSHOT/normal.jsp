@@ -27,4 +27,5 @@
         <%@include file="components/navbar.jsp" %>
         <h1>This is User Panel</h1>
     </body>
+    <%@include file="components/common_modals.jsp" %>
 </html>

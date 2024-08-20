@@ -11,5 +11,8 @@
                 <%@include file="components/navbar.jsp" %>
 
         <h1>Hello World!</h1>
+        
+        
+                                        <%@include file="components/common_modals.jsp" %>
     </body>
 </html>

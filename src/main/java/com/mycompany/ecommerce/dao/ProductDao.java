@@ -1,6 +1,5 @@
 package com.mycompany.ecommerce.dao;
 
-import com.mycompany.ecommerce.entities.Category;
 import com.mycompany.ecommerce.entities.Product;
 import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 
 /**
  *
@@ -63,6 +61,27 @@ public class ProductDao {
         try (Session session = this.factory.openSession()) {
 
             TypedQuery<Product> query = session.createQuery("from Product", Product.class);
+            products = query.getResultList();
+
+        } catch (HibernateException e) {
+            e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+    
+    //get all products by category-id
+    public List<Product> getProductsByCategoryId(int categoryId) {
+
+        List<Product> products = new ArrayList<>();
+
+        try (Session session = this.factory.openSession()) {
+
+            TypedQuery<Product> query = session.createQuery("from Product where category.categoryId=: id", Product.class);
+            query.setParameter("id", categoryId);
             products = query.getResultList();
 
         } catch (HibernateException e) {
